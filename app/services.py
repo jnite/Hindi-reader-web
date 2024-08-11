@@ -2,6 +2,7 @@ import model.classes
 import model.docs
 from db.mysql_repo import MysqlRepository
 from model.docs import HindiDoc
+from model.docs import Word
 # import db.mysql_repo
 
 # repo = db.mysql_repo.MysqlRepository()
