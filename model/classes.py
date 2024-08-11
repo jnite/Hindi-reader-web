@@ -30,3 +30,11 @@ class Word:
     def __str__(self):
         return self.dev
 
+    @property
+    def data(self):
+        return {
+            "dev": self.dev,
+            "pos": self.pos,
+            "eng": self.eng,
+            "definition": self.definition
+        }
