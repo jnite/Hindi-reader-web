@@ -8,9 +8,9 @@ class MysqlRepository:
     def __init__(self):
         config = {
             'user': 'root',
-            'password': 'root',
+            'password': '',
             'host': 'localhost',  # When you run this on your machine change it to 'localhost' (vs 'db')
-            'port': '32000',  # When you run this on your machine change it to '32000' (vs '3306')
+            'port': '3306',  # When you run this on your machine change it to '32000' (vs '3306')
             'database': 'hindi'
         }
         self.connection = mysql.connector.connect(**config)
@@ -36,7 +36,8 @@ class MysqlRepository:
 
     def dev_query(self, query: str):
         if query not in self.dev_gloss():
-            raise ValueError('Not a valid Hindi word')
+            # if no valid word entered, return an empty list. Raising an error forces the program to crash.
+            return []
         try:
             self.cursor.execute("SELECT * FROM hindi_lexicon WHERE word_dev = %s", (query,))
             return self.cursor.fetchall()

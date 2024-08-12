@@ -55,11 +55,13 @@ class Services:
 
     # USE CASE 2 Hindi Translation - user can input a Devanagari word and get English translation(s).
     def show_dev_trans(self, word):
-        word_tuple = self.repo.dev_query(word)
-        if len(word_tuple) == 0:
+        word_tuples = self.repo.dev_query(word) # this returns a list of tuples, not a single tuple
+        if len(word_tuples) == 0:
             word_res = Word('', '', 'Not a valid word option', '')
         else:
-            word_res = Word(word_tuple[0], word_tuple[1], word_tuple[2], word_tuple[3])
+            word_tuple = word_tuples[0] # Need to get the first tuple from the list of tuples
+            # the 1st column is the id, so if you want the other 4 columns, start at index 1
+            word_res = Word(word_tuple[1], word_tuple[2], word_tuple[3], word_tuple[4])
         return word_res
 
 

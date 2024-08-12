@@ -70,10 +70,10 @@ def doc() -> str:
 
 
 #Still trying to get this to work
-@app.route("/translate", methods=["GET"])
+@app.route("/translate", methods=["POST"])
 def translate_word():
     data = request.get_json()
-    word_json = services.show_dev_trans(data.get('word'))
+    word_json = services.show_dev_trans(data.get('word')).data
     return word_json
 
 
